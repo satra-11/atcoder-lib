@@ -4,8 +4,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dashboard": "bun --cwd dashboard run dev",
-    "dashboard:build": "bun --cwd dashboard run build"
+    "dev": "bun run --cwd dashboard dev",
+    "dashboard": "bun run --cwd dashboard dev",
+    "dashboard:build": "bun run --cwd dashboard build"
   },
   "devDependencies": {
     "@types/bun": "latest"
