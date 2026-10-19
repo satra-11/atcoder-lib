@@ -1,0 +1,16 @@
+{
+  "name": "atcoder-lib",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dashboard": "bun --cwd dashboard run dev",
+    "dashboard:build": "bun --cwd dashboard run build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}

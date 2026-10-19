@@ -1,0 +1,80 @@
+[
+  {
+    "id": "abc393_c",
+    "contest": "ABC393",
+    "problem": "C",
+    "url": "https://atcoder.jp/contests/abc393/tasks/abc393_c",
+    "difficulty": "brown",
+    "result": "AC",
+    "solvedAt": "2026-10-18T21:15:00.000Z",
+    "timeMinutes": 12,
+    "tags": [
+      "グラフ",
+      "自己ループ",
+      "多重辺",
+      "Set"
+    ],
+    "reviewNeeded": false,
+    "memo": "無向グラフの自己ループ (u==v) と多重辺の検出。頂点ペアを正規化 (min(u,v), max(u,v)) してSetで管理すればO(M)で一発。",
+    "createdAt": "2026-10-18T21:15:00.000Z",
+    "updatedAt": "2026-10-18T21:15:00.000Z"
+  },
+  {
+    "id": "abc392_d",
+    "contest": "ABC392",
+    "problem": "D",
+    "url": "https://atcoder.jp/contests/abc392/tasks/abc392_d",
+    "difficulty": "green",
+    "result": "解説AC",
+    "solvedAt": "2026-10-17T15:30:00.000Z",
+    "timeMinutes": 45,
+    "tags": [
+      "確率",
+      "ハッシュマップ",
+      "全探索",
+      "数学"
+    ],
+    "reviewNeeded": true,
+    "memo": "サイコロのペアを全探索 (N<=100)。各出目の頻度をCounterで持って内積を計算。Nが小さいことに気付くのが遅れた。要復習！",
+    "createdAt": "2026-10-17T15:30:00.000Z",
+    "updatedAt": "2026-10-17T15:30:00.000Z"
+  },
+  {
+    "id": "abc391_b",
+    "contest": "ABC391",
+    "problem": "B",
+    "url": "https://atcoder.jp/contests/abc391/tasks/abc391_b",
+    "difficulty": "gray",
+    "result": "AC",
+    "solvedAt": "2026-10-15T19:00:00.000Z",
+    "timeMinutes": 6,
+    "tags": [
+      "グリッド",
+      "2次元全探索",
+      "文字列"
+    ],
+    "reviewNeeded": false,
+    "memo": "N x N グリッド内の M x M パターンマッチング。1-indexed での出力に注意。",
+    "createdAt": "2026-10-15T19:00:00.000Z",
+    "updatedAt": "2026-10-15T19:00:00.000Z"
+  },
+  {
+    "id": "abc390_e",
+    "contest": "ABC390",
+    "problem": "E",
+    "url": "https://atcoder.jp/contests/abc390/tasks/abc390_e",
+    "difficulty": "cyan",
+    "result": "WA",
+    "solvedAt": "2026-10-14T22:10:00.000Z",
+    "timeMinutes": 60,
+    "tags": [
+      "動的計画法",
+      "二分探索",
+      "ナップサックDP"
+    ],
+    "reviewNeeded": true,
+    "memo": "ビタミン1, 2, 3 それぞれについてカロリー消費ごとの最大摂取量を個別DPで求め、最小値を二分探索。境界値のinf処理でWA。リベンジが必要。",
+    "createdAt": "2026-10-14T22:10:00.000Z",
+    "updatedAt": "2026-10-14T22:10:00.000Z"
+  }
+]
