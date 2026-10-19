@@ -9,3 +9,12 @@ wheels/
 /workspace
 # Virtual environments
 .venv
+
+# Node & Nuxt build files
+node_modules/
+dashboard/node_modules/
+dashboard/.nuxt/
+dashboard/.output/
+.output/
+.nuxt/
+.playwright-mcp/
