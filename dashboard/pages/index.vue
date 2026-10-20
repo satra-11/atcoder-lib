@@ -156,13 +156,16 @@ function openDetailModal(record: ProblemRecord) {
   isDetailModalOpen.value = true
 }
 
-async function onRecordSaved() {
+async function onRecordSaved(savedRecord?: ProblemRecord & { isOverwritten?: boolean }) {
   await refresh()
+  const isOverwritten = Boolean(savedRecord?.isOverwritten)
   toast.add({
-    title: '保存しました',
-    description: '解答記録が更新されました。',
-    color: 'emerald',
-    icon: 'i-lucide-check'
+    title: isOverwritten ? '上書き保存しました' : '保存しました',
+    description: isOverwritten
+      ? `${savedRecord?.contest} ${savedRecord?.problem} の既存記録を最新の内容で上書き更新しました。`
+      : '解答記録が正常に保存されました。',
+    color: isOverwritten ? 'amber' : 'emerald',
+    icon: isOverwritten ? 'i-lucide-refresh-cw' : 'i-lucide-check'
   })
 }
 
@@ -628,6 +631,7 @@ function formatDate(iso: string) {
       v-model:open="isFormModalOpen"
       :record="editingRecord"
       :existing-tags="allTags"
+      :existing-records="records"
       @saved="onRecordSaved"
     />
 
