@@ -24,14 +24,14 @@ const isOpen = computed({
 
 const isEdit = computed(() => Boolean(props.record?.id))
 const title = computed(() => isEdit.value ? '正答記録を編集' : '新しい正答記録を追加')
-const description = computed(() => isEdit.value ? '記録の内容やメモ、復習ステータスを更新します。' : '回数と問題記号を選ぶだけでURLと難易度色が自動設定されます。')
+const description = computed(() => isEdit.value ? '記録の内容やメモ、復習ステータスを更新します。' : '回数と問題を選ぶだけでURLと難易度色が自動設定されます。')
 
 // コンテスト入力用
 const contestType = ref<'ABC' | 'ARC' | 'AGC' | 'AHC' | 'OTHER'>('ABC')
 const contestNumber = ref<string>('393')
 const customContestName = ref<string>('')
 
-// 問題記号用
+// 問題選択用
 const problemChoice = ref<string>('C')
 const customProblem = ref<string>('')
 
@@ -210,7 +210,7 @@ function selectExistingTag(tag: string) {
 
 async function onSubmit() {
   if (!contestDisplay.value.trim() || !problemDisplay.value.trim()) {
-    errorMsg.value = 'コンテスト回数と問題記号を指定してください。'
+    errorMsg.value = 'コンテスト回数と問題を指定してください。'
     return
   }
 
@@ -301,9 +301,9 @@ async function onSubmit() {
 
         <!-- Contest & Problem Picker Section -->
         <div class="p-3.5 rounded-xl border border-border/70 bg-muted/20 space-y-3">
-          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
             <!-- Contest Type -->
-            <div class="sm:col-span-4">
+            <div>
               <label class="block text-xs font-semibold text-muted-foreground mb-1">種別</label>
               <USelect
                 v-model="contestType"
@@ -315,7 +315,7 @@ async function onSubmit() {
             </div>
 
             <!-- Contest Number -->
-            <div v-if="contestType !== 'OTHER'" class="sm:col-span-4">
+            <div v-if="contestType !== 'OTHER'">
               <label class="block text-xs font-semibold text-muted-foreground mb-1">回数 (番号) *</label>
               <UInput
                 v-model="contestNumber"
@@ -327,7 +327,7 @@ async function onSubmit() {
             </div>
 
             <!-- Other Contest Name -->
-            <div v-else class="sm:col-span-4">
+            <div v-else>
               <label class="block text-xs font-semibold text-muted-foreground mb-1">コンテスト名 *</label>
               <UInput
                 v-model="customContestName"
@@ -337,52 +337,50 @@ async function onSubmit() {
                 class="font-mono"
               />
             </div>
+          </div>
 
-            <!-- Problem Choice -->
-            <div class="sm:col-span-4">
-              <label class="block text-xs font-semibold text-muted-foreground mb-1">問題記号 *</label>
-              <USelect
-                v-model="problemChoice"
-                :options="problemOptions.map(p => ({ label: p === 'OTHER' ? 'その他' : `問題 ${p}`, value: p }))"
-                value-attribute="value"
-                option-attribute="label"
-                size="sm"
-              />
+          <!-- Problem Picker (Card Style) -->
+          <div class="space-y-2 pt-1 border-t border-border/40">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <label class="block text-xs font-semibold text-muted-foreground">問題 *</label>
+              <div class="flex items-center gap-1.5 shrink-0">
+                <span class="text-[11px] text-muted-foreground">自動難易度:</span>
+                <DifficultyBadge :difficulty="difficulty" />
+                <UButton
+                  color="gray"
+                  variant="ghost"
+                  size="2xs"
+                  icon="i-lucide-palette"
+                  title="難易度色を手動変更する"
+                  @click="isCustomDifficulty = !isCustomDifficulty"
+                />
+              </div>
             </div>
-          </div>
 
-          <!-- Custom Problem Input if OTHER -->
-          <div v-if="problemChoice === 'OTHER'">
-            <label class="block text-xs font-medium text-muted-foreground mb-1">問題記号を直接入力</label>
-            <UInput v-model="customProblem" placeholder="例: Ex" class="font-mono uppercase w-32" size="sm" />
-          </div>
-
-          <!-- Quick Select Buttons + Auto Difficulty -->
-          <div class="flex items-center justify-between gap-2 pt-1 flex-wrap">
-            <div class="flex items-center gap-1 flex-wrap">
-              <span class="text-[11px] text-muted-foreground mr-0.5">問題:</span>
+            <div class="flex items-center gap-1.5 flex-wrap">
               <button
-                v-for="p in ['A', 'B', 'C', 'D', 'E', 'F', 'G']"
+                v-for="p in problemOptions"
                 :key="p"
                 type="button"
-                class="w-7 h-7 rounded-md text-xs font-mono font-bold border transition-all cursor-pointer flex items-center justify-center"
-                :class="problemChoice === p ? 'bg-primary text-primary-foreground border-primary shadow-sm' : 'border-border/70 bg-background/50 hover:bg-muted'"
+                class="h-8 px-3 rounded-md text-xs font-mono font-semibold border transition-all cursor-pointer flex items-center justify-center shadow-xs"
+                :class="problemChoice === p
+                  ? 'bg-primary text-primary-foreground border-primary shadow-sm ring-2 ring-primary/20 font-bold'
+                  : 'border-border/70 bg-background/60 hover:bg-muted text-foreground/85 hover:text-foreground'"
                 @click="problemChoice = p"
               >
-                {{ p }}
+                {{ p === 'OTHER' ? 'その他' : p }}
               </button>
             </div>
 
-            <div class="flex items-center gap-1.5 shrink-0">
-              <span class="text-[11px] text-muted-foreground">自動難易度:</span>
-              <DifficultyBadge :difficulty="difficulty" />
-              <UButton
-                color="gray"
-                variant="ghost"
-                size="2xs"
-                icon="i-lucide-palette"
-                title="難易度色を手動変更する"
-                @click="isCustomDifficulty = !isCustomDifficulty"
+            <!-- Custom Problem Input if OTHER -->
+            <div v-if="problemChoice === 'OTHER'" class="pt-1 flex items-center gap-2">
+              <label class="text-xs text-muted-foreground shrink-0 font-medium">問題記号/番号:</label>
+              <UInput
+                v-model="customProblem"
+                placeholder="例: Ex, H, 001 など"
+                class="font-mono uppercase w-40"
+                size="sm"
+                autofocus
               />
             </div>
           </div>
