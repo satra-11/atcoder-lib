@@ -11,3 +11,17 @@
 
 - [ ] pytestが自動で実行される環境（CI/CD または pre-commit 等）を構築する
 
+Warshall-ford
+Bellman-Ford
+二部マッチング
+Dyijkstra
+最大フロー問題、最小全域問題
+Union Find木
+ゲーム　ニム
+Grundy数
+半分全列挙
+木DP
+ダブリンぐ
+最大公約数
+MODの累乗　二進数
+ゲーム　必勝法
