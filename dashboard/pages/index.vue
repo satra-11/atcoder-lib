@@ -57,7 +57,6 @@ const difficultyOptions = [
 const resultOptions = [
   { label: '結果: すべて', value: 'all' },
   { label: 'AC (正答)', value: 'AC' },
-  { label: '解説AC', value: '解説AC' },
   { label: 'WA (誤答)', value: 'WA' },
   { label: 'TLE / MLE', value: 'TLE' },
   { label: 'RE / CE', value: 'RE' }
@@ -107,8 +106,12 @@ const filteredRecords = computed(() => {
       return false
     }
 
-    if (filterResult.value !== 'all' && r.result !== filterResult.value) {
-      return false
+    if (filterResult.value !== 'all') {
+      if (filterResult.value === 'AC') {
+        if (r.result !== 'AC' && r.result !== '解説AC') return false
+      } else if (r.result !== filterResult.value) {
+        return false
+      }
     }
 
     if (filterTag.value !== 'all' && (!r.tags || !r.tags.includes(filterTag.value))) {

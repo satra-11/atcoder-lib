@@ -117,7 +117,7 @@ const contestTypeOptions = [
 
 const problemOptions = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'Ex', 'OTHER']
 const diffOptions: DifficultyColor[] = ['gray', 'brown', 'green', 'cyan', 'blue', 'yellow', 'orange', 'red']
-const resultOptions: SubmissionResult[] = ['AC', '解説AC', 'WA', 'TLE', 'RE', 'MLE']
+const resultOptions: SubmissionResult[] = ['AC', 'WA', 'TLE', 'RE', 'MLE']
 
 // モーダルオープン時または record 変更時にフォーム初期化
 watch(
