@@ -1,5 +1,22 @@
 [
   {
+    "id": "abc400_c",
+    "contest": "ABC400",
+    "problem": "C",
+    "url": "https://atcoder.jp/contests/abc400/tasks/abc400_c",
+    "difficulty": "brown",
+    "result": "解説AC",
+    "solvedAt": "2026-10-30T15:06:00.000Z",
+    "timeMinutes": 20,
+    "tags": [
+      "数学"
+    ],
+    "reviewNeeded": false,
+    "memo": "Anki",
+    "createdAt": "2026-10-30T15:06:45.477Z",
+    "updatedAt": "2026-10-30T15:06:45.477Z"
+  },
+  {
     "id": "abc474_d",
     "contest": "ABC474",
     "problem": "D",

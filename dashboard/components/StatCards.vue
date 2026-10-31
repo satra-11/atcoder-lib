@@ -25,11 +25,13 @@ const diffBgMap: Record<DifficultyColor, string> = {
 
 const stats = computed(() => {
   const total = props.records.length
-  const effectiveAcCount = props.records.filter(r => r.result === 'AC' || r.result === '解説AC').length
+  const acCount = props.records.filter(r => r.result === 'AC').length
+  const kaisetsuCount = props.records.filter(r => r.result === '解説AC').length
   const waCount = props.records.filter(r => r.result === 'WA').length
   const reviewCount = props.records.filter(r => r.reviewNeeded).length
 
-  const acRate = total > 0 ? Math.round((effectiveAcCount / total) * 100) : 0
+  const acRate = total > 0 ? Math.round((acCount / total) * 100) : 0
+  const totalAcRate = total > 0 ? Math.round(((acCount + kaisetsuCount) / total) * 100) : 0
 
   const diffDistribution = diffColors.map(color => {
     const count = props.records.filter(r => r.difficulty === color).length
@@ -39,10 +41,12 @@ const stats = computed(() => {
 
   return {
     total,
-    effectiveAcCount,
+    acCount,
+    kaisetsuCount,
     waCount,
     reviewCount,
     acRate,
+    totalAcRate,
     diffDistribution
   }
 })
@@ -59,7 +63,8 @@ const stats = computed(() => {
       <div>
         <div class="text-3xl font-bold font-mono tracking-tight">{{ stats.total }} <span class="text-sm font-normal text-muted-foreground">問</span></div>
         <p class="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
-          <span class="text-emerald-400 font-semibold font-mono">{{ stats.effectiveAcCount }} AC</span>
+          <span class="text-emerald-400 font-semibold font-mono">{{ stats.acCount + stats.kaisetsuCount }} AC</span>
+          <span>(自力+解説AC)</span>
         </p>
       </div>
     </UCard>
@@ -67,15 +72,16 @@ const stats = computed(() => {
     <!-- AC Rate -->
     <UCard :ui="{ body: { padding: 'p-4 sm:p-5' } }" class="hover:border-border/80 transition-colors">
       <div class="flex items-center justify-between pb-2">
-        <span class="text-sm font-medium text-muted-foreground">正答率 (AC率)</span>
+        <span class="text-sm font-medium text-muted-foreground">自力AC率 / 全AC率</span>
         <UIcon name="i-lucide-check-circle-2" class="h-4 w-4 text-emerald-400" />
       </div>
       <div>
         <div class="flex items-baseline gap-2">
           <span class="text-3xl font-bold font-mono tracking-tight text-emerald-400">{{ stats.acRate }}%</span>
+          <span class="text-xs text-muted-foreground font-mono">/ 全体 {{ stats.totalAcRate }}%</span>
         </div>
         <p class="text-xs text-muted-foreground mt-1">
-          AC: {{ stats.effectiveAcCount }} / WA: {{ stats.waCount }}
+          自力: {{ stats.acCount }} / 解説: {{ stats.kaisetsuCount }} / WA: {{ stats.waCount }}
         </p>
       </div>
     </UCard>
