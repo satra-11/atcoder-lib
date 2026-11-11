@@ -1,5 +1,55 @@
 [
   {
+    "id": "abc480_d",
+    "contest": "ABC480",
+    "problem": "D",
+    "url": "https://atcoder.jp/contests/abc480/tasks/abc480_d",
+    "difficulty": "green",
+    "result": "WA",
+    "solvedAt": "2026-11-11T12:28:00.000Z",
+    "timeMinutes": null,
+    "tags": [
+      "数列",
+      "累積和"
+    ],
+    "reviewNeeded": true,
+    "memo": "事前計算は累積和と、さらにその累積和でブロックの合計ができる。\n二分探索の実装方法。",
+    "createdAt": "2026-11-11T12:30:41.123Z",
+    "updatedAt": "2026-11-11T12:30:44.185Z"
+  },
+  {
+    "id": "abc393_d",
+    "contest": "ABC393",
+    "problem": "D",
+    "url": "https://atcoder.jp/contests/abc393/tasks/abc393_d",
+    "difficulty": "green",
+    "result": "WA",
+    "solvedAt": "2026-11-10T22:55:00.000Z",
+    "timeMinutes": null,
+    "tags": [
+      "二進数の並替"
+    ],
+    "reviewNeeded": true,
+    "memo": "最小値が数学的に求まるO(1)。\n最終的に'1'が集まる場所をx, x+1,...x+iとすると、P_i - (x+i) となる。\nA配列をP_i - iとして、xはメジアンになる。",
+    "createdAt": "2026-11-11T08:10:37.962Z",
+    "updatedAt": "2026-11-11T11:45:36.558Z"
+  },
+  {
+    "id": "abc393_c",
+    "contest": "ABC393",
+    "problem": "C",
+    "url": "https://atcoder.jp/contests/abc393/tasks/abc393_c",
+    "difficulty": "brown",
+    "result": "解説AC",
+    "solvedAt": "2026-11-10T04:31:00.000Z",
+    "timeMinutes": null,
+    "tags": [],
+    "reviewNeeded": false,
+    "memo": "ケアレス。「自己ループ」ではなく「ループ」を消そうとしていた。",
+    "createdAt": "2026-11-10T13:31:54.697Z",
+    "updatedAt": "2026-11-11T12:31:29.007Z"
+  },
+  {
     "id": "abc400_c",
     "contest": "ABC400",
     "problem": "C",
@@ -135,20 +185,5 @@
     "memo": "",
     "createdAt": "2026-10-22T07:53:57.240Z",
     "updatedAt": "2026-10-22T07:53:57.240Z"
-  },
-  {
-    "id": "abc393_c",
-    "contest": "ABC393",
-    "problem": "C",
-    "url": "https://atcoder.jp/contests/abc393/tasks/abc393_c",
-    "difficulty": "brown",
-    "result": "AC",
-    "solvedAt": "2026-10-19T23:26:00.000Z",
-    "timeMinutes": null,
-    "tags": [],
-    "reviewNeeded": false,
-    "memo": "",
-    "createdAt": "2026-10-18T21:15:00.000Z",
-    "updatedAt": "2026-10-19T23:26:36.427Z"
   }
 ]
