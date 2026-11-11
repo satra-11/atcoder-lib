@@ -442,11 +442,11 @@ function formatDate(iso: string) {
                 <!-- Review Bookmark Button -->
                 <td class="px-4 py-3 text-center" @click.stop="toggleReview(record)">
                   <button
-                    class="p-1 rounded hover:bg-muted/80 text-muted-foreground transition-colors"
-                    :class="record.reviewNeeded ? 'text-amber-400' : 'opacity-30 group-hover:opacity-70'"
+                    class="p-1 rounded hover:bg-muted/80 transition-colors"
+                    :class="record.reviewNeeded ? 'text-yellow-400' : 'text-muted-foreground opacity-30 group-hover:opacity-70'"
                     :title="record.reviewNeeded ? '要復習 (クリックで解除)' : '要復習にする'"
                   >
-                    <UIcon name="i-lucide-bookmark" class="w-4 h-4" :class="record.reviewNeeded ? 'fill-amber-400' : ''" />
+                    <UIcon name="i-lucide-bookmark" class="w-4 h-4" :class="record.reviewNeeded ? 'fill-yellow-400 text-yellow-400' : ''" />
                   </button>
                 </td>
 
@@ -570,12 +570,12 @@ function formatDate(iso: string) {
                   <UIcon name="i-lucide-external-link" class="w-3.5 h-3.5" />
                 </a>
                 <button
-                  class="p-1 rounded hover:bg-muted text-muted-foreground transition-colors"
-                  :class="record.reviewNeeded ? 'text-amber-400' : 'opacity-40 hover:opacity-100'"
+                  class="p-1 rounded hover:bg-muted transition-colors"
+                  :class="record.reviewNeeded ? 'text-yellow-400' : 'text-muted-foreground opacity-40 hover:opacity-100'"
                   :title="record.reviewNeeded ? '要復習' : '復習マークをつける'"
                   @click.stop="toggleReview(record)"
                 >
-                  <UIcon name="i-lucide-bookmark" class="w-4 h-4" :class="record.reviewNeeded ? 'fill-amber-400' : ''" />
+                  <UIcon name="i-lucide-bookmark" class="w-4 h-4" :class="record.reviewNeeded ? 'fill-yellow-400 text-yellow-400' : ''" />
                 </button>
               </div>
             </div>
